@@ -12,6 +12,8 @@ import java.util.concurrent.TimeUnit;
 public class Batch {
     private static  int cnt = 0;
     private int id;
+
+    private CouponType couponType;
     private BatchState batchState;
     private LocalDate startDate;
     private LocalDate endDate;
@@ -21,12 +23,13 @@ public class Batch {
 
     private Map<Integer, Coupon> usedcoupons = new HashMap<>();
 
-    public Batch(LocalDate start, LocalDate end, String distributor) {
+    public Batch(LocalDate start, LocalDate end, String distributor, CouponType couponType) {
+        id = ++cnt;
         this.startDate = start;
         endDate = end;
         this.distributor = distributor;
         this.batchState = BatchState.CREATED;
-        checkBatchValidity();
+        this.couponType = couponType;
     }
 
     public static int getCnt() {
@@ -53,6 +56,14 @@ public class Batch {
         return usedcoupons;
     }
 
+    public CouponType getCouponType() {
+        return couponType;
+    }
+
+    public void setCouponType(CouponType couponType) {
+        this.couponType = couponType;
+    }
+
     public void setUsedcoupons(Map<Integer, Coupon> usedcoupons) {
         this.usedcoupons = usedcoupons;
     }
@@ -62,7 +73,7 @@ public class Batch {
     }
 
     public void checkBatchValidity(){
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        /*ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         scheduler.scheduleAtFixedRate(new Runnable() {
                                           @Override
                                           public void run() {
@@ -78,12 +89,20 @@ public class Batch {
                 TimeUnit.DAYS.toSeconds(1),
                 TimeUnit.SECONDS);
 
+*/
 
     }
 
-
-    public void deactivateBatch() {
-        batchState = BatchState.EXPIRED;
+    @Override
+    public String toString() {
+        return "Batch{" +
+                "id=" + id +
+                ", couponType=" + couponType +
+                ", batchState=" + batchState +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", distributor='" + distributor + '\'' +
+                ", usedcoupons=" + usedcoupons +
+                '}';
     }
-
 }

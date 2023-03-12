@@ -25,7 +25,7 @@ public class OpenBatch extends Batch {
     }
 
     public OpenBatch(LocalDate start, LocalDate end, String distributor, int maxNoOfCoupons) {
-        super(start, end, distributor);
+        super(start, end, distributor, CouponType.OPEN);
         this.maxNoOfCoupons = maxNoOfCoupons;
     }
 }

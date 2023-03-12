@@ -2,7 +2,7 @@ import model.Batch;
 import model.BatchState;
 import model.Coupon;
 import model.CouponType;
-import service.CouponManagementSystem;
+import controller.CouponManagementController;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -12,17 +12,18 @@ import java.util.HashSet;
 public class Main {
     public static void main(String[] args) {
 
-        CouponManagementSystem couponManagementSystem = new CouponManagementSystem();
+        CouponManagementController couponManagementController = new CouponManagementController();
 
-        Batch batch1 = couponManagementSystem.createBatch(LocalDate.of(2023, Month.MARCH, 1), LocalDate.of(2023, Month.MARCH, 30), "Distributor xyz", CouponType.OPEN, 20);
-        Batch batch2 = couponManagementSystem.createBatch(LocalDate.of(2023, Month.MARCH, 1), LocalDate.of(2023, Month.MARCH, 30), "Distributor xyz", CouponType.CLOSE);
+        Batch batch1 = couponManagementController.createBatch(LocalDate.of(2023, Month.MARCH, 1), LocalDate.of(2023, Month.MARCH, 30), "Distributor xyz", CouponType.OPEN, 20);
+        Batch batch2 = couponManagementController.createBatch(LocalDate.of(2023, Month.MARCH, 1), LocalDate.of(2023, Month.MARCH, 30), "Distributor xyz", CouponType.CLOSE, null);
 
-        couponManagementSystem.updateState(batch1.getId(), BatchState.APPROVED);
-        couponManagementSystem.updateState(batch2.getId(), BatchState.APPROVED);
+        couponManagementController.updateState(batch1.getId(), BatchState.APPROVED);
+        couponManagementController.updateState(batch2.getId(), BatchState.APPROVED);
 
-        Batch batch = couponManagementSystem.getBatch(batch1.getId());
-        couponManagementSystem.ingestCoupons(batch2.getId(), new HashSet<>(Arrays.asList("a", "b", "c")));
-        Coupon coupon = couponManagementSystem.grantCoupon(batch1.getId());
-        int cnt = couponManagementSystem.getCouponsCount(batch1.getId());
+        couponManagementController.getBatch(batch1.getId());
+        couponManagementController.getBatch(batch2.getId());
+        couponManagementController.ingestCoupons(batch1.getId(), new HashSet<>(Arrays.asList("a", "b", "c")));
+        Coupon coupon = couponManagementController.grantCoupon(batch1.getId());
+        int cnt = couponManagementController.getCouponsCount(batch1.getId());
     }
 }

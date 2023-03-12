@@ -33,4 +33,13 @@ public class Coupon {
     public void setUsed(boolean used) {
         this.used = used;
     }
+
+    @Override
+    public String toString() {
+        return "Coupon{" +
+                "couponId=" + couponId +
+                ", couponCode='" + couponCode + '\'' +
+                ", used=" + used +
+                '}';
+    }
 }

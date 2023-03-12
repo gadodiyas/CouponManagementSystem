@@ -10,7 +10,7 @@ public class CloseBatch extends Batch {
 
 
     public CloseBatch(LocalDate start, LocalDate end, String distributor) {
-        super(start, end, distributor);
+        super(start, end, distributor, CouponType.CLOSE);
     }
 
     public List<Coupon> getUnusedcoupons() {
