@@ -1,3 +1,4 @@
+import interfaces.BatchDetails;
 import model.Batch;
 import model.BatchState;
 import model.Coupon;
@@ -20,7 +21,7 @@ public class Main {
         couponManagementSystem.updateState(batch1.getId(), BatchState.APPROVED);
         couponManagementSystem.updateState(batch2.getId(), BatchState.APPROVED);
 
-        Batch batch = couponManagementSystem.getBatch(batch1.getId());
+        BatchDetails batch = couponManagementSystem.getBatch(batch1.getId());
         couponManagementSystem.ingestCoupons(batch2.getId(), new HashSet<>(Arrays.asList("a", "b", "c")));
         Coupon coupon = couponManagementSystem.grantCoupon(batch1.getId());
         int cnt = couponManagementSystem.getCouponsCount(batch1.getId());

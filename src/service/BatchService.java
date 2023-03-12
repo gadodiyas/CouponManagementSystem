@@ -10,7 +10,6 @@ import java.util.HashSet;
 
 public class BatchService {
 
-
     public Batch createBatch(LocalDate start, LocalDate end, String distributor, CouponType couponType, Integer maxNoOfCoupons) {
         Batch batch;
         if(start == null || end == null || distributor == null) {
@@ -26,7 +25,5 @@ public class BatchService {
         }
         return batch;
     }
-
-
 
 }

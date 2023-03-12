@@ -1,5 +1,7 @@
 package model;
 
+import interfaces.BatchDetails;
+
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -9,7 +11,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class Batch {
+public abstract class Batch implements BatchDetails {
     private static  int cnt = 0;
     private int id;
     private BatchState batchState;
